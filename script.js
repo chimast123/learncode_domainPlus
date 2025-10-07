@@ -1,3 +1,5 @@
+import { randomNumberGenerator, lesserThanChecker } from "./functions.js";
+
 let firstvalue = document.querySelector(".firstValue");
 let secondValue = document.querySelector(".secondValue");
 let sign = document.querySelector(".sign");
@@ -8,11 +10,6 @@ let checkButton = document.querySelector(".input-area .checkBut");
 
 let signs = ["+", "-", "*", "/"];
 
-function randomNumberGenerator() {
-  let value = Math.ceil(Math.random() * 100);
-  return value;
-}
-
 let generateNumber = randomNumberGenerator();
 
 result.style.display = "none";
@@ -21,23 +18,14 @@ firstvalue.innerHTML = generateNumber;
 secondValue.innerHTML = generateNumber;
 sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
 
-function lesserThanChecker() {
-  if (
-    Number(firstvalue.innerHTML) < Number(secondValue.innerHTML) &&
-    sign.innerHTML == "-"
-  ) {
-    firstvalue.innerHTML = generateNumber;
-    secondValue.innerHTML = generateNumber;
-  }
-}
-lesserThanChecker();
+lesserThanChecker(firstvalue, secondValue, sign);
 
 nextButton.addEventListener("click", () => {
   result.style.display = "none";
   firstvalue.innerHTML = generateNumber;
   secondValue.innerHTML = generateNumber;
   sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
-  lesserThanChecker;
+  lesserThanChecker(firstvalue, secondValue, sign);
 });
 
 checkButton.addEventListener("click", () => {
