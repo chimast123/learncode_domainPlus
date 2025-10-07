@@ -7,6 +7,7 @@ let result = document.querySelector(".answer");
 let answerField = document.querySelector(".input-area input");
 let nextButton = document.querySelector(".input-area .next");
 let checkButton = document.querySelector(".input-area .checkBut");
+let answerMessage = document.querySelector(".answer-message");
 
 let signs = ["+", "-", "*", "/"];
 
@@ -22,6 +23,7 @@ lesserThanChecker(firstvalue, secondValue, sign);
 
 nextButton.addEventListener("click", () => {
   result.style.display = "none";
+  answerMessage.innerHTML = "";
   firstvalue.innerHTML = generateNumber;
   secondValue.innerHTML = generateNumber;
   sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
@@ -31,7 +33,7 @@ nextButton.addEventListener("click", () => {
 checkButton.addEventListener("click", () => {
   result.style.display = "block";
   if (answerField.value == "") {
-    alert("Please enter a value");
+    answerMessage.innerHTML = "Please enter a value";
     return;
   } else {
     let finalAnswer = eval(
@@ -39,9 +41,12 @@ checkButton.addEventListener("click", () => {
     );
     result.innerHTML = finalAnswer;
     if (answerField.value !== String(finalAnswer)) {
-      alert("Wrong answer, view correct answer below!😉");
+      answerMessage.classList.add("wrong");
+      answerMessage.innerHTML =
+        "Sorry you missed it, see the correct answer!⏬";
     } else {
-      alert("Correct answer, well done!");
+      answerMessage.classList.add("correct");
+      answerMessage.innerHTML = "Sharp! That's the correct answer";
     }
   }
 });

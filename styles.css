@@ -58,3 +58,16 @@
   font-weight: bold;
   color: rgb(126, 212, 14);
 }
+
+.answer-message {
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  color: blue;
+}
+.answer-message.correct {
+  color: green;
+}
+.answer-message.wrong {
+  color: red;
+}
