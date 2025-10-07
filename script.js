@@ -8,31 +8,36 @@ let checkButton = document.querySelector(".input-area .checkBut");
 
 let signs = ["+", "-", "*", "/"];
 
-result.style.display = "none";
-
-firstvalue.innerHTML = Math.ceil(Math.random() * 100);
-secondValue.innerHTML = Math.ceil(Math.random() * 100);
-sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
-if (
-  Number(firstvalue.innerHTML) < Number(secondValue.innerHTML) &&
-  sign.innerHTML == "-"
-) {
-  firstvalue.innerHTML = Math.ceil(Math.random() * 100);
-  secondValue.innerHTML = Math.ceil(Math.random() * 100);
+function randomNumberGenerator() {
+  let value = Math.ceil(Math.random() * 100);
+  return value;
 }
 
-nextButton.addEventListener("click", () => {
-  result.style.display = "none";
-  firstvalue.innerHTML = Math.ceil(Math.random() * 100);
-  secondValue.innerHTML = Math.ceil(Math.random() * 100);
-  sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
+let generateNumber = randomNumberGenerator();
+
+result.style.display = "none";
+
+firstvalue.innerHTML = generateNumber;
+secondValue.innerHTML = generateNumber;
+sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
+
+function lesserThanChecker() {
   if (
     Number(firstvalue.innerHTML) < Number(secondValue.innerHTML) &&
     sign.innerHTML == "-"
   ) {
-    firstvalue.innerHTML = Math.ceil(Math.random() * 100);
-    secondValue.innerHTML = Math.ceil(Math.random() * 100);
+    firstvalue.innerHTML = generateNumber;
+    secondValue.innerHTML = generateNumber;
   }
+}
+lesserThanChecker();
+
+nextButton.addEventListener("click", () => {
+  result.style.display = "none";
+  firstvalue.innerHTML = generateNumber;
+  secondValue.innerHTML = generateNumber;
+  sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
+  lesserThanChecker;
 });
 
 checkButton.addEventListener("click", () => {
