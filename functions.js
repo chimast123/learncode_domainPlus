@@ -2,6 +2,10 @@ export function randomNumberGenerator() {
   return Math.ceil(Math.random() * 100);
 }
 
+export function randomSignGenerator(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 export function lesserThanChecker(firstvalue, secondValue, sign) {
   if (
     Number(firstvalue.innerHTML) < Number(secondValue.innerHTML) &&

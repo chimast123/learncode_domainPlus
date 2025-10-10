@@ -1,4 +1,8 @@
-import { randomNumberGenerator, lesserThanChecker } from "./functions.js";
+import {
+  randomNumberGenerator,
+  randomSignGenerator,
+  lesserThanChecker,
+} from "./functions.js";
 
 let firstvalue = document.querySelector(".firstValue");
 let secondValue = document.querySelector(".secondValue");
@@ -11,22 +15,22 @@ let answerMessage = document.querySelector(".answer-message");
 
 let signs = ["+", "-", "*", "/"];
 
-let generateNumber = randomNumberGenerator();
-
 result.style.display = "none";
 
-firstvalue.innerHTML = generateNumber;
-secondValue.innerHTML = generateNumber;
-sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
+firstvalue.innerHTML = randomNumberGenerator();
+secondValue.innerHTML = randomNumberGenerator();
+sign.innerHTML = randomSignGenerator(signs);
 
 lesserThanChecker(firstvalue, secondValue, sign);
 
 nextButton.addEventListener("click", () => {
   result.style.display = "none";
   answerMessage.innerHTML = "";
-  firstvalue.innerHTML = generateNumber;
-  secondValue.innerHTML = generateNumber;
-  sign.innerHTML = signs[Math.floor(Math.random() * signs.length)];
+
+  firstvalue.innerHTML = randomNumberGenerator();
+  secondValue.innerHTML = randomNumberGenerator();
+  sign.innerHTML = randomSignGenerator(signs);
+
   lesserThanChecker(firstvalue, secondValue, sign);
 });
 
@@ -41,10 +45,16 @@ checkButton.addEventListener("click", () => {
     );
     result.innerHTML = finalAnswer;
     if (answerField.value !== String(finalAnswer)) {
+      if (answerMessage.classList.contains("correct")) {
+        answerMessage.classList.remove("correct");
+      }
       answerMessage.classList.add("wrong");
       answerMessage.innerHTML =
         "Sorry you missed it, see the correct answer!⏬";
     } else {
+      if (answerMessage.classList.contains("wrong")) {
+        answerMessage.classList.remove("wrong");
+      }
       answerMessage.classList.add("correct");
       answerMessage.innerHTML = "Sharp! That's the correct answer";
     }

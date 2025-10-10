@@ -46,6 +46,13 @@
   cursor: pointer;
   width: 5em;
 }
+
+input::placeholder {
+  font-size: 10px;
+  color: gray;
+  opacity: 1;
+}
+
 .input-area button {
   padding: 10px;
   font-size: 17px;
